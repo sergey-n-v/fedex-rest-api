@@ -3,19 +3,19 @@
 require_once 'credentials.php';
 require_once 'bootstrap.php';
 
-use FedEx\AuthorizationService\ComplexType\AuthResponse;
-use FedEx\AuthorizationService\Request as FedexAuthorizationRequest;
-use FedEx\AvailabilityService\ComplexType\AvTransitTimeRecipient;
-use FedEx\AvailabilityService\ComplexType\AvTransitTimeRecipient_address;
-use FedEx\AvailabilityService\ComplexType\AvTransitTimeRequestedPackageLineItem;
-use FedEx\AvailabilityService\ComplexType\AvTransitTimeRequestedPackageLineItem_declaredValue;
-use FedEx\AvailabilityService\ComplexType\AvTransitTimeRequestedPackageLineItem_weight;
-use FedEx\AvailabilityService\ComplexType\AvTransitTimeRequestedShipment;
-use FedEx\AvailabilityService\ComplexType\AvTransitTimeRequestedShipment_shipper;
-use FedEx\AvailabilityService\ComplexType\AvTransitTimeShipper;
-use FedEx\AvailabilityService\ComplexType\TransitTimesRequest;
-use FedEx\AvailabilityService\Request as FedexAvailabilityService;
-use FedEx\AvailabilityService\SimpleType\AvCarrierCodes;
+use FedExRestApi\AuthorizationService\ComplexType\AuthResponse;
+use FedExRestApi\AuthorizationService\Request as FedexAuthorizationRequest;
+use FedExRestApi\AvailabilityService\ComplexType\AvTransitTimeRecipient;
+use FedExRestApi\AvailabilityService\ComplexType\AvTransitTimeRecipient_address;
+use FedExRestApi\AvailabilityService\ComplexType\AvTransitTimeRequestedPackageLineItem;
+use FedExRestApi\AvailabilityService\ComplexType\AvTransitTimeRequestedPackageLineItem_declaredValue;
+use FedExRestApi\AvailabilityService\ComplexType\AvTransitTimeRequestedPackageLineItem_weight;
+use FedExRestApi\AvailabilityService\ComplexType\AvTransitTimeRequestedShipment;
+use FedExRestApi\AvailabilityService\ComplexType\AvTransitTimeRequestedShipment_shipper;
+use FedExRestApi\AvailabilityService\ComplexType\AvTransitTimeShipper;
+use FedExRestApi\AvailabilityService\ComplexType\TransitTimesRequest;
+use FedExRestApi\AvailabilityService\Request as FedexAvailabilityService;
+use FedExRestApi\AvailabilityService\SimpleType\AvCarrierCodes;
 
 $authorizationRequest = new FedexAuthorizationRequest();
 $ratesReply = $authorizationRequest->authorize();
@@ -60,7 +60,7 @@ $serviceAvailabilityReply = $fedexAvailabilityService->transitTimes(
                     ]
                 )
 //        ->setServiceType('STANDARD_OVERNIGHT')
-//        ->setPickupType(\FedEx\AvailabilityService\SimpleType\AvPickupType::_USE_SCHEDULED_PICKUP)
+//        ->setPickupType(\FedExRestApi\AvailabilityService\SimpleType\AvPickupType::_USE_SCHEDULED_PICKUP)
 //        ->setShippingChargesPayment(
 //            (new AvTransitTimeShippingChargesPayment())
 //            ->setPayor(
@@ -83,7 +83,7 @@ $serviceAvailabilityReply = $fedexAvailabilityService->transitTimes(
 //                    )
 //                )
 //            )
-//            ->setPaymentType(\FedEx\AvailabilityService\SimpleType\AvPaymentType::_SENDER)
+//            ->setPaymentType(\FedExRestApi\AvailabilityService\SimpleType\AvPaymentType::_SENDER)
 //        )
                 ->setRequestedPackageLineItems(
                     [
@@ -110,9 +110,9 @@ $serviceAvailabilityReply = $fedexAvailabilityService->transitTimes(
 //                    ->setSpecialServiceTypes(["DANGEROUS_GOODS"])
 //                    ->setDangerousGoodsDetail(
 //                        (new AvTransitTimeRequestedPackageLineItem_packageSpecialServices_dangerousGoodsDetail())
-//                        ->setAccessibility(\FedEx\AvailabilityService\SimpleType\AvAccessibility::_ACCESSIBLE)
+//                        ->setAccessibility(\FedExRestApi\AvailabilityService\SimpleType\AvAccessibility::_ACCESSIBLE)
 //                        ->setOptions(
-//                            [\FedEx\AvailabilityService\SimpleType\AvOptions::_ORM_D]
+//                            [\FedExRestApi\AvailabilityService\SimpleType\AvOptions::_ORM_D]
 //                        )
 //                    )
 //                )

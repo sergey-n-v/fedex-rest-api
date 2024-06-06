@@ -3,12 +3,12 @@
 require_once 'credentials.php';
 require_once 'bootstrap.php';
 
-use FedEx\AddressValidationService\ComplexType\AddressValidationAddress;
-use FedEx\AddressValidationService\ComplexType\AddressValidationAddressResolutionControlParameters;
-use FedEx\AddressValidationService\ComplexType\AddressValidationRequest;
-use FedEx\AuthorizationService\ComplexType\AuthResponse;
-use FedEx\AuthorizationService\Request as FedexAuthorizationRequest;
-use FedEx\AddressValidationService\Request as FedexAddressValitionService;
+use FedExRestApi\AddressValidationService\ComplexType\AddressValidationAddress;
+use FedExRestApi\AddressValidationService\ComplexType\AddressValidationAddressResolutionControlParameters;
+use FedExRestApi\AddressValidationService\ComplexType\AddressValidationRequest;
+use FedExRestApi\AuthorizationService\ComplexType\AuthResponse;
+use FedExRestApi\AuthorizationService\Request as FedexAuthorizationRequest;
+use FedExRestApi\AddressValidationService\Request as FedexAddressValitionService;
 
 $authorizationRequest = new FedexAuthorizationRequest();
 $ratesReply = $authorizationRequest->authorize();
@@ -34,7 +34,7 @@ $addressValidationReply = $addressValidationServiceRequest->validateAddress(
     )
     ->setAddressesToValidate(
     [
-        (new \FedEx\AddressValidationService\ComplexType\AddressValidationResolveContactAndAddress())
+        (new \FedExRestApi\AddressValidationService\ComplexType\AddressValidationResolveContactAndAddress())
         ->setClientReferenceId('ClientReferenceId'.time())
         ->setAddress(
             (new AddressValidationAddress())

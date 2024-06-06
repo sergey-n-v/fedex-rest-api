@@ -8,24 +8,24 @@
 require_once 'credentials.php';
 require_once 'bootstrap.php';
 
-use FedEx\AuthorizationService\ComplexType\AuthResponse;
-use FedEx\AuthorizationService\Request as FedexAuthorizationRequest;
+use FedExRestApi\AuthorizationService\ComplexType\AuthResponse;
+use FedExRestApi\AuthorizationService\Request as FedexAuthorizationRequest;
 
-use FedEx\ShipService\ComplexType\ShipCommercialInvoice;
-use FedEx\ShipService\ComplexType\ShipCustomsClearanceDetail;
-use FedEx\ShipService\ComplexType\ShipDimensions;
-use FedEx\ShipService\ComplexType\ShipLabelSpecification;
-use FedEx\ShipService\ComplexType\ShipMoney;
-use FedEx\ShipService\ComplexType\ShipPartyAddress;
-use FedEx\ShipService\ComplexType\ShipPartyContact;
-use FedEx\ShipService\ComplexType\ShipRequestedShipment;
-use FedEx\ShipService\ComplexType\ShipShipperAccountNumber;
-use FedEx\ShipService\ComplexType\ShipWeight;
-use FedEx\ShipService\Request as FedexShipmentRequest;
+use FedExRestApi\ShipService\ComplexType\ShipCommercialInvoice;
+use FedExRestApi\ShipService\ComplexType\ShipCustomsClearanceDetail;
+use FedExRestApi\ShipService\ComplexType\ShipDimensions;
+use FedExRestApi\ShipService\ComplexType\ShipLabelSpecification;
+use FedExRestApi\ShipService\ComplexType\ShipMoney;
+use FedExRestApi\ShipService\ComplexType\ShipPartyAddress;
+use FedExRestApi\ShipService\ComplexType\ShipPartyContact;
+use FedExRestApi\ShipService\ComplexType\ShipRequestedShipment;
+use FedExRestApi\ShipService\ComplexType\ShipShipperAccountNumber;
+use FedExRestApi\ShipService\ComplexType\ShipWeight;
+use FedExRestApi\ShipService\Request as FedexShipmentRequest;
 
-use FedEx\ShipService;
-use FedEx\ShipService\ComplexType;
-use FedEx\ShipService\SimpleType;
+use FedExRestApi\ShipService;
+use FedExRestApi\ShipService\ComplexType;
+use FedExRestApi\ShipService\SimpleType;
 
 $authorizationRequest = new FedexAuthorizationRequest();
 $ratesReply = $authorizationRequest->authorize();

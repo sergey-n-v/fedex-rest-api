@@ -3,28 +3,28 @@
 require_once 'credentials.php';
 require_once 'bootstrap.php';
 
-use FedEx\AuthorizationService\ComplexType\AuthResponse;
-use FedEx\AuthorizationService\Request as FedexAuthorizationRequest;
+use FedExRestApi\AuthorizationService\ComplexType\AuthResponse;
+use FedExRestApi\AuthorizationService\Request as FedexAuthorizationRequest;
 
-use FedEx\OpenShipService\ComplexType\ConfirmOpenShipmentRequest;
-use FedEx\OpenShipService\ComplexType\CreateOpenShipmentRequest;
-use FedEx\OpenShipService\ComplexType\ModifyOpenShipmentPackagesRequest;
-use FedEx\OpenShipService\ComplexType\OpenShipCommercialInvoice;
-use FedEx\OpenShipService\ComplexType\OpenShipCustomsClearanceDetail;
-use FedEx\OpenShipService\ComplexType\OpenShipDimensions;
-use FedEx\OpenShipService\ComplexType\OpenShipLabelSpecification;
-use FedEx\OpenShipService\ComplexType\OpenShipMoney;
-use FedEx\OpenShipService\ComplexType\OpenShipOpenshipmentRequestedShipment;
-use FedEx\OpenShipService\ComplexType\OpenShipPartyAccountNumber;
-use FedEx\OpenShipService\ComplexType\OpenShipPartyAddress;
-use FedEx\OpenShipService\ComplexType\OpenShipPartyContact;
-use FedEx\OpenShipService\ComplexType\OpenShipPayment;
-use FedEx\OpenShipService\ComplexType\OpenShipRequestedPackageLineItem;
-use FedEx\OpenShipService\ComplexType\OpenShipShipperParty;
-use FedEx\OpenShipService\ComplexType\OpenShipTrackingId;
-use FedEx\OpenShipService\ComplexType\OpenShipWeight;
-use FedEx\OpenShipService\ComplexType\RetrieveOpenShipmentRequest;
-use FedEx\OpenShipService\Request as FedexOpenShipService;
+use FedExRestApi\OpenShipService\ComplexType\ConfirmOpenShipmentRequest;
+use FedExRestApi\OpenShipService\ComplexType\CreateOpenShipmentRequest;
+use FedExRestApi\OpenShipService\ComplexType\ModifyOpenShipmentPackagesRequest;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipCommercialInvoice;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipCustomsClearanceDetail;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipDimensions;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipLabelSpecification;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipMoney;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipOpenshipmentRequestedShipment;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipPartyAccountNumber;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipPartyAddress;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipPartyContact;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipPayment;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipRequestedPackageLineItem;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipShipperParty;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipTrackingId;
+use FedExRestApi\OpenShipService\ComplexType\OpenShipWeight;
+use FedExRestApi\OpenShipService\ComplexType\RetrieveOpenShipmentRequest;
+use FedExRestApi\OpenShipService\Request as FedexOpenShipService;
 
 $authorizationRequest = new FedexAuthorizationRequest();
 $ratesReply = $authorizationRequest->authorize();
@@ -54,11 +54,11 @@ $fedexOpenShipReply = $fedexOpenShipService->createOpenShipment(
         ->setValue($fedexOpenShipService->getAccountId())
     )
     ->setIndex($index)
-    ->setOpenShipmentAction(\FedEx\OpenShipService\SimpleType\OpenShipOpenShipmentAction::_CREATE_PACKAGE)
+    ->setOpenShipmentAction(\FedExRestApi\OpenShipService\SimpleType\OpenShipOpenShipmentAction::_CREATE_PACKAGE)
     ->setRequestedShipment(
         (new OpenShipOpenshipmentRequestedShipment())
         ->setShipDatestamp(date('c'))
-        ->setPickupType(\FedEx\OpenShipService\SimpleType\OpenShipPickupType::_USE_SCHEDULED_PICKUP)
+        ->setPickupType(\FedExRestApi\OpenShipService\SimpleType\OpenShipPickupType::_USE_SCHEDULED_PICKUP)
         ->setServiceType('PRIORITY_OVERNIGHT')
         ->setPackagingType('YOUR_PACKAGING')
 //        ->setTotalWeight(1)
@@ -87,15 +87,15 @@ $fedexOpenShipReply = $fedexOpenShipService->createOpenShipment(
                 )
                 ->setTins(
                     [
-                        (new \FedEx\OpenShipService\ComplexType\OpenShipTaxpayerIdentification())
-                            ->setTinType(\FedEx\OpenShipService\SimpleType\OpenShipTinType::_PERSONAL_STATE)
+                        (new \FedExRestApi\OpenShipService\ComplexType\OpenShipTaxpayerIdentification())
+                            ->setTinType(\FedExRestApi\OpenShipService\SimpleType\OpenShipTinType::_PERSONAL_STATE)
                             ->setNumber('vat_TAX')
                     ]
                 )
             )
         ->setRecipients(
             [
-                (new \FedEx\OpenShipService\ComplexType\OpenShipRecipientsParty())
+                (new \FedExRestApi\OpenShipService\ComplexType\OpenShipRecipientsParty())
                 ->setAddress(
                     (new OpenShipPartyAddress())
                         ->setStreetLines(
@@ -120,8 +120,8 @@ $fedexOpenShipReply = $fedexOpenShipService->createOpenShipment(
                 ->setDeliveryInstructions('Delivery Instructions')
                 ->setTins(
                     [
-                        (new \FedEx\OpenShipService\ComplexType\OpenShipTaxpayerIdentification())
-                            ->setTinType(\FedEx\OpenShipService\SimpleType\OpenShipTinType::_PERSONAL_STATE)
+                        (new \FedExRestApi\OpenShipService\ComplexType\OpenShipTaxpayerIdentification())
+                            ->setTinType(\FedExRestApi\OpenShipService\SimpleType\OpenShipTinType::_PERSONAL_STATE)
                             ->setNumber('Recipientvat_TAX')
                     ]
                 )
@@ -129,18 +129,18 @@ $fedexOpenShipReply = $fedexOpenShipService->createOpenShipment(
         )
         ->setShippingChargesPayment(
             (new OpenShipPayment())
-                ->setPaymentType(\FedEx\OpenShipService\SimpleType\OpenShipPaymentType::_SENDER)
+                ->setPaymentType(\FedExRestApi\OpenShipService\SimpleType\OpenShipPaymentType::_SENDER)
         )
             ->setCustomsClearanceDetail(
                 (new OpenShipCustomsClearanceDetail())
                 ->setCommercialInvoice(
                     (new OpenShipCommercialInvoice)
                     ->setTermsOfSale('DAP')
-                    ->setShipmentPurpose(\FedEx\OpenShipService\SimpleType\OpenShipShipmentPurpose::_PERSONAL_EFFECTS)
+                    ->setShipmentPurpose(\FedExRestApi\OpenShipService\SimpleType\OpenShipShipmentPurpose::_PERSONAL_EFFECTS)
                 )
                 ->setCommodities(
                     [
-                        (new \FedEx\OpenShipService\ComplexType\OpenShipCommodity())
+                        (new \FedExRestApi\OpenShipService\ComplexType\OpenShipCommodity())
                             ->setName("product 1")
                             ->setDescription("Product 1")
                             ->setQuantity(1)
@@ -150,7 +150,7 @@ $fedexOpenShipReply = $fedexOpenShipService->createOpenShipment(
                                     ->setAmount(1.0)
                                     ->setCurrency("USD")
                             ),
-                        (new \FedEx\OpenShipService\ComplexType\OpenShipCommodity())
+                        (new \FedExRestApi\OpenShipService\ComplexType\OpenShipCommodity())
                             ->setName("product 2")
                             ->setDescription("Product 2")
                             ->setQuantity(1)
@@ -165,13 +165,13 @@ $fedexOpenShipReply = $fedexOpenShipService->createOpenShipment(
             )
         ->setRequestedPackageLineItems(
             [
-                (new \FedEx\OpenShipService\ComplexType\OpenShipRequestedPackageLineItem())
+                (new \FedExRestApi\OpenShipService\ComplexType\OpenShipRequestedPackageLineItem())
                 ->setWeight(
                     (new OpenShipWeight())
                     ->setValue(1.22)
                     ->setUnits('KG')
                 ),
-                (new \FedEx\OpenShipService\ComplexType\OpenShipRequestedPackageLineItem())
+                (new \FedExRestApi\OpenShipService\ComplexType\OpenShipRequestedPackageLineItem())
                     ->setWeight(
                         (new OpenShipWeight())
                             ->setValue(1.22)
@@ -199,13 +199,13 @@ $addPackagesToOpenShipmentReply = $fedexOpenShipService->modifyOpenShipmentPacka
         (new OpenShipPartyAccountNumber())
         ->setValue($fedexOpenShipService->getAccountId())
     )
-    ->setShipAction(\FedEx\OpenShipService\SimpleType\OpenShipOpenShipmentAction::_WEAK_VALIDATION)
+    ->setShipAction(\FedExRestApi\OpenShipService\SimpleType\OpenShipOpenShipmentAction::_WEAK_VALIDATION)
     ->setRequestedPackageLineItem(
         (new OpenShipRequestedPackageLineItem())
         ->setSequenceNumber(2)
         ->setWeight(
             (new OpenShipWeight())
-            ->setUnits(\FedEx\OpenShipService\SimpleType\OpenShipUnits::_KG)
+            ->setUnits(\FedExRestApi\OpenShipService\SimpleType\OpenShipUnits::_KG)
             ->setValue(1.001)
         )
         ->setItemDescription('New package added to open shipment')
@@ -244,19 +244,19 @@ var_dump($retrieveOpenShipmentReply);
 $retrieveOpenShipmentReply = $fedexOpenShipService->confirmOpenShipment(
     (new ConfirmOpenShipmentRequest())
     ->setIndex($index)
-    ->setLabelResponseOptions(\FedEx\OpenShipService\SimpleType\OpenShipLabelResponseOptions::_URL_ONLY)
+    ->setLabelResponseOptions(\FedExRestApi\OpenShipService\SimpleType\OpenShipLabelResponseOptions::_URL_ONLY)
     ->setAccountNumber(
         (new OpenShipPartyAccountNumber())
         ->setValue($fedexOpenShipService->getAccountId())
     )
     ->setLabelSpecification(
         (new OpenShipLabelSpecification())
-        ->setLabelFormatType(\FedEx\OpenShipService\SimpleType\OpenShipLabelFormatType::_COMMON2D)
-        ->setLabelOrder(\FedEx\OpenShipService\SimpleType\OpenShipLabelOrder::_SHIPPING_LABEL_FIRST)
-        ->setLabelStockType(\FedEx\OpenShipService\SimpleType\OpenShipLabelStockType::_STOCK_4X6)
-        ->setImageType(\FedEx\OpenShipService\SimpleType\OpenShipImageType::_PDF)
+        ->setLabelFormatType(\FedExRestApi\OpenShipService\SimpleType\OpenShipLabelFormatType::_COMMON2D)
+        ->setLabelOrder(\FedExRestApi\OpenShipService\SimpleType\OpenShipLabelOrder::_SHIPPING_LABEL_FIRST)
+        ->setLabelStockType(\FedExRestApi\OpenShipService\SimpleType\OpenShipLabelStockType::_STOCK_4X6)
+        ->setImageType(\FedExRestApi\OpenShipService\SimpleType\OpenShipImageType::_PDF)
     )
-    ->setEdtRequestType(\FedEx\OpenShipService\SimpleType\OpenShipEdtRequestType::_ALL)
+    ->setEdtRequestType(\FedExRestApi\OpenShipService\SimpleType\OpenShipEdtRequestType::_ALL)
 );
 
 var_dump($retrieveOpenShipmentReply);
