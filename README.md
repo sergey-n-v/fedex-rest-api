@@ -1,7 +1,7 @@
 # PHP FedEx API Wrapper
 
-[![Latest Stable Version](https://github.com/sergey-n-v/fedex-rest-api/v/stable)](https://packagist.org/packages/jeremy-dunn/php-fedex-rest-api)
-[![Total Downloads](https://github.com/sergey-n-v/fedex-rest-api/downloads)](https://packagist.org/packages/jeremy-dunn/php-fedex-fedex-rest-api)
+[![Latest Stable Version](https://github.com/sergey-n-v/fedex-rest-api/v/stable)](https://packagist.org/packages/asabix/php-fedex-rest-api)
+[![Total Downloads](https://github.com/sergey-n-v/fedex-rest-api/downloads)](https://packagist.org/packages/asabix/php-fedex-rest-api)
 
 
 
