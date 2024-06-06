@@ -4,13 +4,13 @@ require_once 'credentials.php';
 require_once 'bootstrap.php';
 
 
-use FedEx\AuthorizationService\ComplexType\AuthResponse;
-use FedEx\AuthorizationService\Request as FedexAuthorizationRequest;
+use FedExRestApi\AuthorizationService\ComplexType\AuthResponse;
+use FedExRestApi\AuthorizationService\Request as FedexAuthorizationRequest;
 
 
-use FedEx\ShipService\ComplexType\CancelShipmentRequest;
-use FedEx\ShipService\ComplexType\ShipShipperAccountNumber;
-use FedEx\ShipService\Request as FedexShipmentRequest;
+use FedExRestApi\ShipService\ComplexType\CancelShipmentRequest;
+use FedExRestApi\ShipService\ComplexType\ShipShipperAccountNumber;
+use FedExRestApi\ShipService\Request as FedexShipmentRequest;
 
 
 $authorizationRequest = new FedexAuthorizationRequest();
@@ -38,7 +38,7 @@ $deleteShipmentReply =  $shipServiceRequest->cancelShipment(
     )
     ->setEmailShipment(false)
     ->setSenderCountryCode("US")
-    ->setDeletionControl(\FedEx\ShipService\SimpleType\ShipDeletionControl::_DELETE_ALL_PACKAGES)
+    ->setDeletionControl(\FedExRestApi\ShipService\SimpleType\ShipDeletionControl::_DELETE_ALL_PACKAGES)
 );
 
     var_dump($deleteShipmentReply);

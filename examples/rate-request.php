@@ -8,14 +8,14 @@
 require_once 'credentials.php';
 require_once 'bootstrap.php';
 
-use FedEx\AuthorizationService\Request as FedexAuthorizationRequest;
-use FedEx\RateService\ComplexType\RateRateAddress;
-use FedEx\RateService\ComplexType\RateRequestePackageLineItemDimensions;
-use FedEx\RateService\Request as FedexRateRequest;
+use FedExRestApi\AuthorizationService\Request as FedexAuthorizationRequest;
+use FedExRestApi\RateService\ComplexType\RateRateAddress;
+use FedExRestApi\RateService\ComplexType\RateRequestePackageLineItemDimensions;
+use FedExRestApi\RateService\Request as FedexRateRequest;
 
-use FedEx\AuthorizationService\ComplexType\AuthResponse;
-use FedEx\RateService\ComplexType;
-use FedEx\RateService\SimpleType;
+use FedExRestApi\AuthorizationService\ComplexType\AuthResponse;
+use FedExRestApi\RateService\ComplexType;
+use FedExRestApi\RateService\SimpleType;
 
 $authorizationRequest = new FedexAuthorizationRequest();
 $ratesReply = $authorizationRequest->authorize();

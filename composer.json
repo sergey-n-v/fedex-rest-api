@@ -27,9 +27,9 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "FedEx\\": "src/FedEx/",
-            "FedEx\\Utility\\": "util/",
-            "FedEx\\Tests\\": "tests/FedEx/Tests"
+            "FedExRestApi\\": "src/FedExRestApi/",
+            "FedExRestApi\\Utility\\": "util/",
+            "FedExRestApi\\Tests\\": "tests/FedExRestApi/Tests"
         }
     },
     "scripts": {

@@ -3,15 +3,15 @@
 require_once 'credentials.php';
 require_once 'bootstrap.php';
 
-use FedEx\AuthorizationService\ComplexType\AuthResponse;
-use FedEx\AuthorizationService\Request as FedexAuthorizationRequest;
-use FedEx\ETDService\ComplexType\EtdETDUploadRequest;
-use FedEx\ETDService\ComplexType\EtdMetaObject;
-use FedEx\ETDService\ComplexType\EtdsUploadRequest;
-use FedEx\ETDService\Request as FedexEtdService;
-use FedEx\ETDService\SimpleType\EtdContentType;
-use FedEx\ETDService\SimpleType\EtdShipDocumentType;
-use FedEx\ETDService\SimpleType\EtdWorkflowName;
+use FedExRestApi\AuthorizationService\ComplexType\AuthResponse;
+use FedExRestApi\AuthorizationService\Request as FedexAuthorizationRequest;
+use FedExRestApi\ETDService\ComplexType\EtdETDUploadRequest;
+use FedExRestApi\ETDService\ComplexType\EtdMetaObject;
+use FedExRestApi\ETDService\ComplexType\EtdsUploadRequest;
+use FedExRestApi\ETDService\Request as FedexEtdService;
+use FedExRestApi\ETDService\SimpleType\EtdContentType;
+use FedExRestApi\ETDService\SimpleType\EtdShipDocumentType;
+use FedExRestApi\ETDService\SimpleType\EtdWorkflowName;
 
 $authorizationRequest = new FedexAuthorizationRequest();
 $ratesReply = $authorizationRequest->authorize();
@@ -33,7 +33,7 @@ $request = (new EtdsUploadRequest())
         ->setWorkflowName(EtdWorkflowName::_ETDPOSTSHIPMENT)
         ->setName('CommercialInvoice.xls')
         ->setContentType(EtdContentType::_APPLICATION_VND_MS_EXCEL)
-            ->setCarrierCode(\FedEx\ETDService\SimpleType\EtdCarrierCode::_FDXE)
+            ->setCarrierCode(\FedExRestApi\ETDService\SimpleType\EtdCarrierCode::_FDXE)
         ->setMeta(
             (new EtdMetaObject())
                 ->setTrackingNumber('43543523532')

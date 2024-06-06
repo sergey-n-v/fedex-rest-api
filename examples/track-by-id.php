@@ -3,13 +3,13 @@
 require_once 'credentials.php';
 require_once 'bootstrap.php';
 
-use FedEx\AuthorizationService\ComplexType\AuthResponse;
-use FedEx\AuthorizationService\Request as FedexAuthorizationRequest;
-use FedEx\TrackService\ComplexType\TrackingNumbersRequest;
-use FedEx\TrackService\ComplexType\TrackTrackingNumberInfo;
-use FedEx\TrackService\ComplexType;
+use FedExRestApi\AuthorizationService\ComplexType\AuthResponse;
+use FedExRestApi\AuthorizationService\Request as FedexAuthorizationRequest;
+use FedExRestApi\TrackService\ComplexType\TrackingNumbersRequest;
+use FedExRestApi\TrackService\ComplexType\TrackTrackingNumberInfo;
+use FedExRestApi\TrackService\ComplexType;
 
-use FedEx\TrackService\Request as FedexTrackService;
+use FedExRestApi\TrackService\Request as FedexTrackService;
 $trackingId1 = 123456789012;
 $trackingId2 = 123456789012;
 

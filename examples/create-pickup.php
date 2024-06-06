@@ -3,17 +3,17 @@
 require_once 'credentials.php';
 require_once 'bootstrap.php';
 
-use FedEx\AuthorizationService\ComplexType\AuthResponse;
-use FedEx\AuthorizationService\Request as FedexAuthorizationRequest;
-use FedEx\PickupService\ComplexType\CreatePickupRequest;
-use FedEx\PickupService\ComplexType\PickupAccountNumber;
-use FedEx\PickupService\ComplexType\PickupAddress;
-use FedEx\PickupService\ComplexType\PickupContact_CreatePickup;
-use FedEx\PickupService\ComplexType\PickupOriginDetail;
-use FedEx\PickupService\ComplexType\PickupParty_createPickup;
+use FedExRestApi\AuthorizationService\ComplexType\AuthResponse;
+use FedExRestApi\AuthorizationService\Request as FedexAuthorizationRequest;
+use FedExRestApi\PickupService\ComplexType\CreatePickupRequest;
+use FedExRestApi\PickupService\ComplexType\PickupAccountNumber;
+use FedExRestApi\PickupService\ComplexType\PickupAddress;
+use FedExRestApi\PickupService\ComplexType\PickupContact_CreatePickup;
+use FedExRestApi\PickupService\ComplexType\PickupOriginDetail;
+use FedExRestApi\PickupService\ComplexType\PickupParty_createPickup;
 
-use FedEx\PickupService\ComplexType\PickupWeight;
-use FedEx\PickupService\Request as PickUpServiceRequest;
+use FedExRestApi\PickupService\ComplexType\PickupWeight;
+use FedExRestApi\PickupService\Request as PickUpServiceRequest;
 
 $authorizationRequest = new FedexAuthorizationRequest();
 $ratesReply = $authorizationRequest->authorize();
@@ -37,7 +37,7 @@ $createPickupReply = $pickUpServiceRequest->createPickup(
     )
     ->setOriginDetail(
         (new PickupOriginDetail())
-        ->setPickupAddressType(\FedEx\PickupService\SimpleType\PickupPickupAddressType::_OTHER)
+        ->setPickupAddressType(\FedExRestApi\PickupService\SimpleType\PickupPickupAddressType::_OTHER)
         ->setPickupLocation(
             (new PickupParty_createPickup())
             ->setContact(
@@ -59,7 +59,7 @@ $createPickupReply = $pickUpServiceRequest->createPickup(
                 ->setPostalCode('38125')
                 ->setPostalCode('38125')
 //                ->setResidential(true)
-//                ->setAddressClassification(\FedEx\PickupService\SimpleType\PickupAddressClassification::_RESIDENTIAL)
+//                ->setAddressClassification(\FedExRestApi\PickupService\SimpleType\PickupAddressClassification::_RESIDENTIAL)
             )
             ->setAccountNumber(
                 (new PickupAccountNumber())
@@ -69,9 +69,9 @@ $createPickupReply = $pickUpServiceRequest->createPickup(
         )
         ->setReadyDateTimestamp(date('c', mktime(9, 0, 0, date("m")  , date("d")+1, date("Y"))))
         ->setCustomerCloseTime(date('c', mktime(19, 0, 0, date("m")  , date("d")+1, date("Y"))))
-        ->setPickupDateType(\FedEx\PickupService\SimpleType\PickupPickupDateType::_SAME_DAY)
-        ->setPackageLocation(\FedEx\PickupService\SimpleType\PickupPackageLocation::_NONE)
-        ->setBuildingPart(\FedEx\PickupService\SimpleType\PickupBuildingPart::_APARTMENT)
+        ->setPickupDateType(\FedExRestApi\PickupService\SimpleType\PickupPickupDateType::_SAME_DAY)
+        ->setPackageLocation(\FedExRestApi\PickupService\SimpleType\PickupPackageLocation::_NONE)
+        ->setBuildingPart(\FedExRestApi\PickupService\SimpleType\PickupBuildingPart::_APARTMENT)
         ->setBuildingPartDescription('Building Part Description')
         ->setEarlyPickup(false)
 //        ->setSuppliesRequested('Supplies requested by customer')
@@ -84,10 +84,10 @@ $createPickupReply = $pickUpServiceRequest->createPickup(
     ->setTotalWeight(
             (new PickupWeight())
             ->setValue(1.00)
-            ->setUnits(\FedEx\PickupService\SimpleType\PickupUnits::_KG)
+            ->setUnits(\FedExRestApi\PickupService\SimpleType\PickupUnits::_KG)
         )
     ->setPackageCount(1)
-    ->setCarrierCode(\FedEx\PickupService\SimpleType\PickupCarrierCode::_FDXE)
+    ->setCarrierCode(\FedExRestApi\PickupService\SimpleType\PickupCarrierCode::_FDXE)
     ->setRemarks('Example: Please ring bell at loading dock.')
     ->setPickupType('ON_CALL')
     ->setTrackingNumber('795803657326') //This is a Tracking number for FedEx packages used for tracking a single package or group of packages.

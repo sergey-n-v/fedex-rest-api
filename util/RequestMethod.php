@@ -1,7 +1,7 @@
 <?php
 
 
-namespace FedEx\Utility;
+namespace FedExRestApi\Utility;
 
 
 class RequestMethod
