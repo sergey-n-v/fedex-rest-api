@@ -7,7 +7,7 @@
         "rest",
         "api"
     ],
-    "homepage": "https://github.com/JeremyDunn/php-fedex-api-wrapper",
+    "homepage": "https://github.com/sergey-n-v/php-fedex-rest-api",
     "type": "library",
     "license": "MIT",
     "authors": [
