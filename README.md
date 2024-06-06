@@ -14,7 +14,7 @@ This library provides a fluid interface for constructing requests to the FedEx w
 ## Installation
 
 ```
-
+composer require asabix/php-fedex-rest-api
 ```
 
 ## Using the library
