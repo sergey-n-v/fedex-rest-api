@@ -22,7 +22,10 @@ composer require asabix/php-fedex-rest-api
 
 ## Rate Service request example
 
-
+## Tests
+```
+./vendor/bin/phpunit  tests
+```
 
 ## [Change Log](CHANGELOG.md)
 
