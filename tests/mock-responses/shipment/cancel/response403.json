@@ -1,0 +1,9 @@
+{
+  "transactionId": "624deea6-b709-470c-8c39-4b5511281492",
+  "errors": [
+    {
+      "code": "FORBIDDEN.ERROR",
+      "message": "We could not authorize your credentials. Please check your permissions and try again."
+    }
+  ]
+}

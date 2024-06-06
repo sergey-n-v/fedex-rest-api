@@ -1,0 +1,73 @@
+{
+  "transactionId": "XXX_ORDERXXXX789",
+  "customerTransactionId": "AnyCo_order123456789",
+  "output": {
+    "resolvedAddresses": [
+      {
+        "streetLinesToken": [
+          "7372 PARKRIDGE BLVD",
+          "APT 286"
+        ],
+        "city": "IRVING",
+        "stateOrProvinceCode": "TX",
+        "countryCode": "US",
+        "customerMessage": [
+          null
+        ],
+        "cityToken": [
+          "TOK-1X3256"
+        ],
+        "postalCodeToken": {
+          "changed": false,
+          "value": "SAN JUAN"
+        },
+        "parsedPostalCode": {
+          "base": "00926",
+          "addOn": "2716",
+          "deliveryPoint": "50"
+        },
+        "classification": "BUSINESS",
+        "postOfficeBox": true,
+        "normalizedStatusNameDPV": true,
+        "standardizedStatusNameMatchSource": "Postal",
+        "resolutionMethodName": "USPS_VALIDATE",
+        "ruralRouteHighwayContract": false,
+        "generalDelivery": false,
+        "attributes": {
+          "POBox": false,
+          "POBoxOnlyZIP": false,
+          "SplitZip": false,
+          "SuiteRequiredButMissing": false,
+          "InvalidSuiteNumber": false,
+          "ResolutionInput": "RAW_ADDRESS",
+          "DPV": false,
+          "ResolutionMethod": "GENERIC_VALIDATE",
+          "DataVintage": "July 2020",
+          "MatchSource": "Postal",
+          "CountrySupported": true,
+          "ValidlyFormed": true,
+          "Matched": true,
+          "Resolved": true,
+          "Inserted": false,
+          "MultiUnitBase": false,
+          "ZIP11Match": false,
+          "ZIP4Match": false,
+          "UniqueZIP": false,
+          "StreetAddress": false,
+          "RRConversion": false,
+          "ValidMultiUnit": false,
+          "AddressType": "STANDARDIZED",
+          "AddressPrecision": "MULTI_TENANT_UNIT",
+          "MultipleMatches": false
+        }
+      }
+    ],
+    "alerts": [
+      {
+        "code": "SHIP.RECIPIENT.POSTALCITY.MISMATCH",
+        "message": "Recipient Postal-City Mismatch.",
+        "alertType": "NOTE"
+      }
+    ]
+  }
+}
