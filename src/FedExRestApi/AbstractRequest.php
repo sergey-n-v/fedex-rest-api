@@ -30,6 +30,11 @@ abstract class AbstractRequest implements RequestInterface
     protected array $data = [];
     protected ?string $accountId;
 
+    protected array $headers = [];
+
+    private ?string $xCustomerTransactionId = null; //x-customer-transaction-id
+    private ?string $xLocale = null; //x-locale
+
     protected string|null $responseCode = null;
 
     protected string $requestMethod;
@@ -63,11 +68,6 @@ abstract class AbstractRequest implements RequestInterface
          $this->setClientSecret(FEDEX_PASSWORD);
         }
 
-        if (defined('FEDEX_MODE')){
-            if (FEDEX_MODE == 'prod'){
-                $this->useProduction();
-            }
-        }
     }
 
     /**
@@ -110,11 +110,11 @@ abstract class AbstractRequest implements RequestInterface
         if (empty($this->access_token)) {
             throw new MissingAccessTokenException('Authorization token is missing. Make sure it is included');
         }
+        $header = $this->getHeaders();
+        $header['Authorization'] = "Bearer {$this->access_token}";
+
         $this->http_client = new Client([
-            'headers' => [
-                'Authorization' => "Bearer {$this->access_token}",
-                'Content-Type' => 'application/json'
-            ],
+            'headers' => $header,
         ]);
 
         try {
@@ -203,4 +203,60 @@ abstract class AbstractRequest implements RequestInterface
     {
         return $this->accountId;
     }
+
+    /**
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        if ($this->headers) return  $this->headers;
+
+        $this->headers = [
+            'Content-Type' => 'application/json'
+        ];
+
+        if ($this->xCustomerTransactionId){
+            $this->headers['x-customer-transaction-id'] = $this->xCustomerTransactionId;
+        }
+
+        if ($this->xLocale){
+            $this->headers['x-locale'] = $this->xLocale;
+        }
+
+        return  $this->headers;
+    }
+
+    /**
+     * @param array $headers
+     * @return AbstractRequest
+     */
+    public function setHeaders(array $headers): AbstractRequest
+    {
+        $this->headers = $headers;
+        return $this;
+    }
+
+
+
+    /**
+     * @param string|null $xCustomerTransactionId
+     * @return AbstractRequest
+     */
+    public function setXCustomerTransactionId(?string $xCustomerTransactionId): AbstractRequest
+    {
+        $this->xCustomerTransactionId = $xCustomerTransactionId;
+        return $this;
+    }
+
+    /**
+     * @param string|null $xLocale
+     * @return AbstractRequest
+     */
+    public function setXLocale(?string $xLocale): AbstractRequest
+    {
+        $this->xLocale = $xLocale;
+        return $this;
+    }
+
+
 }

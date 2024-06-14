@@ -13,6 +13,7 @@ use FedExRestApi\Utility\RequestMethod;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Utils;
+use Throwable;
 
 class Request  extends AbstractRequest
 {
@@ -142,11 +143,14 @@ class Request  extends AbstractRequest
         if (empty($this->access_token)) {
             throw new MissingAccessTokenException('Authorization token is missing. Make sure it is included');
         }
+
+        $headers = $this->getHeaders();
+        $headers['Content-Type'] = 'multipart/form-data';
+        $headers['Authorization'] = "Bearer {$this->access_token}";
+
+
         $http_client = new Client([
-            'headers' => [
-                'Authorization' => "Bearer {$this->access_token}",
-                'Content-Type' => 'multipart/form-data'
-            ],
+            'headers' => $headers,
         ]);
 
                 try {
@@ -168,7 +172,7 @@ class Request  extends AbstractRequest
                 return ($this->raw === true) ? $response : json_decode($response->getBody()->getContents());
         } catch (ClientException $e) {
             return ($this->raw === true) ? $e->getResponse() : json_decode($e->getResponse()->getBody()->getContents());
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             return json_decode(json_encode(["errors"=>["code"=>"system error","message"=>$e->getMessage()]]));
         }
         return null;
