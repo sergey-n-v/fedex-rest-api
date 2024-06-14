@@ -63,10 +63,11 @@ class Request extends AbstractRequest
     {
         $httpClient = new Client();
             try {
+                $headers = $this->getHeaders();
+                $headers['Content-Type'] = 'application/x-www-form-urlencoded';
+
                 $query = $httpClient->request('POST', $this->getApiUri('/oauth/token'), [
-                    'headers' => [
-                        'Content-Type' => 'application/x-www-form-urlencoded',
-                    ],
+                    'headers' => $headers,
                     'form_params' => $this->getData()
                 ]);
                 $this->setResponseCode($query->getStatusCode());

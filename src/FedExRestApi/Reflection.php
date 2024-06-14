@@ -18,7 +18,7 @@ class Reflection
             return null;
         }
         preg_match('/@param\s+([^\s]+)/', $reflectionParameter->getDeclaringFunction()->getDocComment(), $matches);
-        var_dump($reflectionParameter->getDeclaringFunction()->getDocComment());
+
         if (isset($matches[1])) {
             if (stristr($matches[1], 'SimpleType')) {
                 return str_replace('[]', '', explode('|', $matches[1])[0]);
